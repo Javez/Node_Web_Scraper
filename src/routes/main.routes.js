@@ -1,20 +1,18 @@
 const express = require("express");
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-const { authenticateToken } = require("./middleware/auth");
+const path = require("path");
 
 const router = express.Router();
 
-router.post("/auth/sign-up", async (req, res) => {
-  // Handle user sign-up logic
+router.get("/", async (req, res) => {
+  res.redirect("/sign-in");
 });
 
-router.post("/auth/login", async (req, res) => {
-  // Handle user login logic
+router.get("/sign-up", async (req, res) => {
+  res.sendFile(path.join(__dirname, "../views", "signup.html"));
 });
 
-router.get("/auth/logout", authenticateToken, async (req, res) => {
-  // Handle user logout logic
+router.get("/sign-in", async (req, res) => {
+  res.sendFile(path.join(__dirname, "../views", "signin.html"));
 });
 
 module.exports = router;
